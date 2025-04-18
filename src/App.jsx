@@ -1,8 +1,8 @@
-// Car Finder App (React + TailwindCSS + Dark Mode + Animations)
+// Car Finder App
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const mockAPI = "/api/api/v1/cars";
+const mockAPI = "https://www.freetestapi.com/api/v1/cars";
 
 const App = () => {
   const [cars, setCars] = useState([]);
