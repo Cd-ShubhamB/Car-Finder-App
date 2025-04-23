@@ -122,7 +122,7 @@ const App = () => {
       } min-h-screen transition-colors duration-300`}
     >
       <div className="p-4 max-w-screen-lg mx-auto">
-        <div className="flex justify-between items-center mb-4">
+        <div className={`flex justify-between items-center mb-4 ${darkMode ?"bg-gray-700" : "bg-violet-100"} p-4 rounded`}>
           <h1 className="text-2xl font-bold">Car Finder App 🚗</h1>
           <button
             onClick={() => setDarkMode(!darkMode)}
@@ -142,7 +142,8 @@ const App = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+          <div className={`p-4 rounded ${darkMode ?"bg-gray-700" : "bg-violet-100"}`}>
+            <div className={`grid grid-cols-2 md:grid-cols-4 gap-2 mb-4 p-4 rounded ${darkMode|| "bg-violet-100"}`}>
               <input
                 type="text"
                 placeholder="Search by car name"
@@ -203,9 +204,9 @@ const App = () => {
               </select>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-4">
+            <div className={`grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-4 p-4 rounded ${darkMode?"bg-gray-700" : "bg-violet-100"}`}>
               {displayedCars.length === 0 ? (
-                <div className="text-center col-span-full text-gray-600 dark:text-gray-300 font-medium py-10">
+                <div className="text-center col-span-full bg-white text-gray-600 dark:text-gray-300 font-medium py-10">
                   No cars found matching your criteria.
                 </div>
               ) : (
@@ -213,7 +214,7 @@ const App = () => {
                   {displayedCars.map((car) => (
                     <div
                       key={car.id}
-                      className={`border p-4 rounded shadow-lg hover:scale-105 transition-transform duration-300 ${darkMode && " bg-gray-800"}`}
+                      className={`border p-4 rounded shadow-lg hover:scale-105 transition-transform duration-300 ${darkMode ? " bg-gray-800" :"bg-white"}`}
                     >
                       <img
                         src={
@@ -269,15 +270,16 @@ const App = () => {
                 )
               )}
             </div>
+            </div>
 
-            <div className="mt-6">
+            <div className={`mt-6 p-4 rounded ${darkMode?"bg-gray-700" : "bg-violet-100"}`}>
               <h2 className="text-xl font-bold mb-2">Wishlist ❤️</h2>
               { (wishlist.length > 0) ?(
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {wishlist.map((car) => (
                   <div
                     key={car.id}
-                    className="border p-2 rounded text-sm bg-white dark:bg-gray-800 transition-colors duration-300"
+                    className={`border p-2 rounded text-sm font-semibold transition-colors duration-300 ${darkMode ? " bg-gray-800 text-white " :"bg-white  text-black"}`}
                   >
                     <img
                       src={car.image || "https://via.placeholder.com/150x100"}
