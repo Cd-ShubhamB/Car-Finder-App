@@ -148,7 +148,7 @@ const App = () => {
                 placeholder="Search by car name"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               />
               <input
                 type="text"
@@ -156,13 +156,13 @@ const App = () => {
                 onChange={(e) =>
                   setFilters({ ...filters, brand: e.target.value })
                 }
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               />
               <select
                 onChange={(e) =>
                   setFilters({ ...filters, fuel: e.target.value })
                 }
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               >
                 <option value="">Fuel</option>
                 <option value="Gasoline">Gasoline</option>
@@ -175,7 +175,7 @@ const App = () => {
                 onChange={(e) =>
                   setFilters({ ...filters, seats: e.target.value })
                 }
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               />
               <input
                 type="number"
@@ -183,7 +183,7 @@ const App = () => {
                 onChange={(e) =>
                   setFilters({ ...filters, minPrice: e.target.value })
                 }
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               />
               <input
                 type="number"
@@ -191,11 +191,11 @@ const App = () => {
                 onChange={(e) =>
                   setFilters({ ...filters, maxPrice: e.target.value })
                 }
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               />
               <select
                 onChange={(e) => setSort(e.target.value)}
-                className="p-2 border rounded bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                className={`p-2 border rounded ${darkMode ? "bg-gray-600 text-white border-gray-600" : "bg-white text-black" }`}
               >
                 <option value="">Sort</option>
                 <option value="low">Price: Low to High</option>
@@ -209,11 +209,11 @@ const App = () => {
                   No cars found matching your criteria.
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 ">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {displayedCars.map((car) => (
                     <div
                       key={car.id}
-                      className="border p-4 rounded shadow-lg hover:scale-105 transition-transform duration-300 bg-white dark:bg-gray-800"
+                      className={`border p-4 rounded shadow-lg hover:scale-105 transition-transform duration-300 ${darkMode && " bg-gray-800"}`}
                     >
                       <img
                         src={
@@ -239,11 +239,11 @@ const App = () => {
                       </p>
                       <button
                         onClick={() => toggleWishlist(car)}
-                        className="mt-2 bg-blue-500 text-white px-3 py-1 rounded hover:opacity-90 transition"
+                        className={`mt-2 ${darkMode? "bg-violet-700 ": "bg-pink-600"}  text-white font-semibold px-3 py-1 rounded hover:opacity-90 transition`}
                       >
                         {wishlist.find((w) => w.id === car.id)
                           ? "Remove from Wishlist"
-                          : "Add to Wishlist"}
+                          : "Add to Wishlist🤍"}
                       </button>
                     </div>
                   ))}
@@ -272,6 +272,7 @@ const App = () => {
 
             <div className="mt-6">
               <h2 className="text-xl font-bold mb-2">Wishlist ❤️</h2>
+              { (wishlist.length > 0) ?(
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {wishlist.map((car) => (
                   <div
@@ -288,8 +289,8 @@ const App = () => {
                     </div>
                   </div>
                 ))}
+              </div>) : (<div className=" font-bold ">No Cars Wishlisted</div>) }
               </div>
-            </div>
           </>
         )}
       </div>
